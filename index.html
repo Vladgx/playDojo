@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Playing with Dojo </title>
+    <script src="dojo/dojo.js" data-dojo-config="async:1"></script>
+    <link rel="stylesheet" href="dijit/themes/claro/claro.css" media="screen">
+    <script type="text/javascript">
+        require(["dijit/layout/BorderContainer","dijit/layout/TabContainer", "dijit/layout/ContentPane",
+                "dijit/layout/AccordionContainer", "dijit/MenuBar", "dijit/MenuBarItem", "dojo/domReady!"],
+            function(BorderContainer, TabContainer, ContentPane,
+                     AccordionContainer,MenuBar,MenuBarItem){
+                var wrapper = new BorderContainer({id:"wrapper"});
+                var cpTop = new ContentPane({
+                                region:"top"
+                            })
+                wrapper.addChild(cpTop);
+                var mainMenu = new MenuBar({id:"mainMenu"});
+                mainMenu.addChild(
+                    new MenuBarItem({
+                        label:"Home"
+                    })
+                );
+                mainMenu.addChild(
+                    new MenuBarItem({
+                        label:"SomePage"
+                    })
+                );
+                cpTop.addChild(mainMenu);
+                var cpLeft = new ContentPane({
+                                region:"left",
+                                "class":"leftPane"
+                             });
+                wrapper.addChild(cpLeft);
+                var cpContent = new ContentPane({
+                        region:"center",
+                        id:"content"
+                    });
+                var contentTabs = new TabContainer({
+                    id: "contentTabs"
+                });
+                contentTabs.addChild(
+                    new ContentPane({
+                        title: "Food",
+                        content: "We offer amazing food"
+                    })
+                );
+                contentTabs.addChild(
+                    new ContentPane({
+                        title: "Drinks",
+                        content: "We offer amazing drinks"
+                    })
+                );
+                cpContent.addChild(contentTabs);
+                wrapper.addChild(cpContent);
+                var aContainer = new AccordionContainer();
+                aContainer.addChild(
+                    new ContentPane({
+                        title: "Заголовок дополнительной информации&nbsp1",
+                        content: "Дополнительная информация по заголовку 1, может содержать также форму и быть пунктами настройки"
+                    })
+                );
+                aContainer.addChild(
+                    new ContentPane({
+                        title: "Заголовок дополнительной информации&nbsp2",
+                        content: "Дополнительная информация по заголовку 2, может содержать также форму и быть пунктами настройки"
+                    })
+                );
+                aContainer.addChild(
+                    new ContentPane({
+                        title: "Заголовок дополнительной информации&nbsp3",
+                        content: "Дополнительная информация по заголовку 3, может содержать также форму и быть пунктами настройки"
+                    })
+                );
+                cpLeft.addChild(aContainer);
+                wrapper.placeAt(document.body);
+                console.log(wrapper);
+                wrapper.startup();
+            });
+    </script>
+    <style type="text/css">
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            overflow:hidden;
+
+            
+        }
+
+        #wrapper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .claro .dijitSplitContainer-child, .claro .dijitBorderContainer-child {
+            border: none;
+        }
+
+        .dijitAccordionTitle{
+            width: max-content;
+        }
+    </style>
+</head>
+<body class="claro">
+
+
+</body>
+</html>
