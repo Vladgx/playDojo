@@ -3,3 +3,5 @@
 dijit
 dojo
 dojox
+
+Не актуально
