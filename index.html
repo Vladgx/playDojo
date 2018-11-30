@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Playing with Dojo </title>
-    <script src="dojo/dojo.js" data-dojo-config="async:1"></script>
-    <link rel="stylesheet" href="dijit/themes/claro/claro.css" media="screen">
+    <!--<script src="dojo/dojo/dojo.js" data-dojo-config="async:1"></script>-->
+    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.14.1/dojo/dojo.js" data-dojo-config="async:1"></script>
+    <link rel="stylesheet" href="dojo/dijit/themes/claro/claro.css" media="screen">
 </head>
 <body class="claro">
 
@@ -34,14 +35,14 @@
     }
 </style>
 <script type="text/javascript">
-    require(["dijit/layout/BorderContainer","dijit/layout/TabContainer", "app/myContentPane",
+    require(["dijit/layout/BorderContainer","dijit/layout/TabContainer", "./app/myContentPane.js",
                 "dijit/layout/AccordionContainer", "dijit/MenuBar", "dijit/MenuBarItem","dojo/router","dojo/on","dojo/dom",
                 "dojo/request","dojo/domReady!"],
-            function(BorderContainer, TabContainer, ContentPane,
+            function(BorderContainer, TabContainer, myContentPane,
                      AccordionContainer,MenuBar,MenuBarItem,router,on,dom,
                      request){
                 var wrapper = new BorderContainer({id:"wrapper"});
-                var cpTop = new ContentPane({
+                var cpTop = new myContentPane({
                     region:"top",
                     content:""
                 })
@@ -66,13 +67,13 @@
                         })
                 );
                 cpTop.addChild(mainMenu);
-                var cpLeft = new ContentPane({
+                var cpLeft = new myContentPane({
                     region:"left",
                     "class":"leftPane",
                     content:""
                 });
                 wrapper.addChild(cpLeft);
-                var cpContent = new ContentPane({
+                var cpContent = new myContentPane({
                     region:"center",
                     id:"content",
                     content:""
@@ -81,13 +82,13 @@
                     id: "contentTabs"
                 });
                 contentTabs.addChild(
-                        new ContentPane({
+                        new myContentPane({
                             title: "Food",
                             content: "We offer amazing food"
                         })
                 );
                 contentTabs.addChild(
-                        new ContentPane({
+                        new myContentPane({
                             title: "Drinks",
                             content: "We offer amazing drinks"
                         })
@@ -97,19 +98,19 @@
                 wrapper.addChild(cpContent);
                 var aContainer = new AccordionContainer();
                 aContainer.addChild(
-                        new ContentPane({
+                        new myContentPane({
                             title: "Заголовок дополнительной информации&nbsp1",
                             content: "Дополнительная информация по заголовку 1, может содержать также форму и быть пунктами настройки"
                         })
                 );
                 aContainer.addChild(
-                        new ContentPane({
+                        new myContentPane({
                             title: "Заголовок дополнительной информации&nbsp2",
                             content: "Дополнительная информация по заголовку 2, может содержать также форму и быть пунктами настройки"
                         })
                 );
                 aContainer.addChild(
-                        new ContentPane({
+                        new myContentPane({
                             title: "Заголовок дополнительной информации&nbsp3",
                             content: "Дополнительная информация по заголовку 3, может содержать также форму и быть пунктами настройки"
                         })
@@ -144,7 +145,7 @@
                 });
 
                 on(dom.byId("mAddTab"),"click",function(){
-                    contentTabs.addChild(new ContentPane({}));
+                    contentTabs.addChild(new myContentPane({}));
                 })
 
             });
