@@ -40,7 +40,7 @@
                 "dojo/request","dojo/domReady!"],
             function(BorderContainer, TabContainer, myContentPane,
                      AccordionContainer,MenuBar,MenuBarItem,router,on,dom,
-                     request){
+                     request,){
                 var wrapper = new BorderContainer({id:"wrapper"});
                 var cpTop = new myContentPane({
                     region:"top",
@@ -81,12 +81,17 @@
                 var contentTabs = new TabContainer({
                     id: "contentTabs"
                 });
+
                 contentTabs.addChild(
                         new myContentPane({
+                            id:"tab1",
                             title: "Food",
-                            content: "We offer amazing food"
+                            content: "",
+                           // containerNode:"tab1",
+                            href:"test.html"
                         })
                 );
+
                 contentTabs.addChild(
                         new myContentPane({
                             title: "Drinks",
@@ -118,7 +123,7 @@
                 cpLeft.addChild(aContainer);
                 wrapper.placeAt(document.body);
                 wrapper.startup();
-                console.log("tabs=",contentTabs);
+
                 router.register("/somepage/",function(evt){
                             evt.preventDefault();
                             request("some.json", {
