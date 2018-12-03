@@ -2,8 +2,8 @@
 define(["dojo/_base/declare","dijit/layout/ContentPane"],
         function(declare,ContentPane){
             return declare("myContentPane",ContentPane,{
-                title:"myTitle",
-                content:"myContent",
+                //title:"myTitle",
+               // content:"myContent",
                 constructor: function(args){
                     declare.safeMixin(this,args);
                 },
@@ -22,11 +22,11 @@ define(["dojo/_base/declare","dijit/layout/ContentPane"],
                         for(var i=0;i<this._code.length;i++){
                             if(n.text==""){n.text = "require(['dijit/registry'],function(registry){ var self=registry.byId('"+this.id+"'); self.script_"+i+"= function(){"+this._code[i]+"}; self.script_"+i+"(); });";}
                             else{n.text += "\nrequire(['dijit/registry'],function(registry){ var self=registry.byId('"+this.id+"'); self.script_"+i+"= function(){"+this._code[i]+"}; self.script_"+i+"(); });";}
-                        }                                                                       console.log(n.text);
+                        }                                                                       //console.log(n.text);
 
                     }
 
-                    console.log(this);
+                    //console.log(this);
                   //  n.text = "require(['dijit/registry'],function(registry){ var self=registry.byId('"+this.id+"'); self.script= function(){"+this._code+"}; self.script(); })";
                 },
 
