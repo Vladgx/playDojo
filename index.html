@@ -35,7 +35,9 @@
     }
 </style>
 <script type="text/javascript">
-    require(["dijit/layout/BorderContainer","dijit/layout/TabContainer", "./app/myContentPane.js",
+    require(["dijit/layout/BorderContainer","dijit/layout/TabContainer",
+//                "dojox/layout/ContentPane",
+                "./app/myContentPane.js",
                 "dijit/layout/AccordionContainer", "dijit/MenuBar", "dijit/MenuBarItem","dojo/router","dojo/on","dojo/dom",
                 "dojo/request","dojo/domReady!"],
             function(BorderContainer, TabContainer, myContentPane,
@@ -45,7 +47,7 @@
                 var cpTop = new myContentPane({
                     region:"top",
                     content:""
-                })
+                });
                 wrapper.addChild(cpTop);
                 var mainMenu = new MenuBar({id:"mainMenu"});
                 mainMenu.addChild(

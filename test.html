@@ -1,12 +1,30 @@
 <script type="text/javascript">
+require([],function(){
+    console.log("this=",this);
+    console.log("self=",self);
+    console.log("1");
+});
+</script>
+
+<script type="text/javascript">
     function foo(){
-        return("bar");
+        console.log("bar");
+        console.log("2");
     }
 </script>
 <div>Тестовый контент</div>
 <input type="button" value="Push me!" onclick="tell()"></input>
+
+<!--<textInput type="button" value="Push me!" onclick="tell()"></textInput>-->
+
+<!--<numberInput type="button" value="Push me!" onclick="tell()"></numberInput>-->
+
+<!--<select>-->
+
+<!--</select>-->
 <script type="text/javascript">
-    function tell(){
-        console.log(this);
-    }
+    require([],function(){
+        console.log("3");
+
+    });
 </script>
