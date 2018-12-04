@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Playing with Dojo </title>
     <!--<script src="dojo/dojo/dojo.js" data-dojo-config="async:1"></script>-->
-    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.14.1/dojo/dojo.js" data-dojo-config="async:1"></script>
+    <script src="dojo/dojo/dojo.js" data-dojo-config="async:1"></script>
     <link rel="stylesheet" href="dojo/dijit/themes/claro/claro.css" media="screen">
 </head>
 <body class="claro">
@@ -37,12 +37,12 @@
 <script type="text/javascript">
     require(["dijit/layout/BorderContainer","dijit/layout/TabContainer",
 //                "dojox/layout/ContentPane",
-                "./app/myContentPane.js",
+                "app/myContentPane","app/tagParser",
                 "dijit/layout/AccordionContainer", "dijit/MenuBar", "dijit/MenuBarItem","dojo/router","dojo/on","dojo/dom",
-                "dojo/request","dojo/domReady!"],
-            function(BorderContainer, TabContainer, myContentPane,
+                "dojo/request","dojo/parser","dojo/domReady!"],
+            function(BorderContainer, TabContainer, myContentPane, tagParser,
                      AccordionContainer,MenuBar,MenuBarItem,router,on,dom,
-                     request,){
+                     request,Parser){
                 var wrapper = new BorderContainer({id:"wrapper"});
                 var cpTop = new myContentPane({
                     region:"top",
@@ -83,17 +83,14 @@
                 var contentTabs = new TabContainer({
                     id: "contentTabs"
                 });
-
-                contentTabs.addChild(
-                        new myContentPane({
-                            id:"tab1",
-                            title: "Food",
-                            content: "",
-                           // containerNode:"tab1",
-                            href:"test.html"
-                        })
-                );
-
+                var tab1 = new myContentPane({
+                                id:"tab1",
+                                title: "Food",
+                                content: "",
+                                // containerNode:"tab1",
+                                href:"test.html"
+                            });
+                contentTabs.addChild(tab1);
                 contentTabs.addChild(
                         new myContentPane({
                             title: "Drinks",
@@ -125,7 +122,10 @@
                 cpLeft.addChild(aContainer);
                 wrapper.placeAt(document.body);
                 wrapper.startup();
+                tab1.onDownloadEnd = function(){ tagParser.parseThis(tab1.containerNode);};
 
+//                var dojoParser = new Parser();
+//                dojoParser.parse();
                 router.register("/somepage/",function(evt){
                             evt.preventDefault();
                             request("some.json", {
